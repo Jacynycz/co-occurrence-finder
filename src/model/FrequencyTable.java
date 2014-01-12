@@ -3,6 +3,7 @@ package model;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Vector;
+import exceptions.ElementNotFoundExceptionException;
 
 /*
  * Class : FrequencyTable
@@ -32,7 +33,7 @@ public class FrequencyTable {
 		if (elem.equalsIgnoreCase(""))
 			return;
 
-		if (!this.check(elem))
+		if (!this.checkWord(elem))
 			return;
 
 		if (this.table.containsKey(elem)) {
@@ -93,10 +94,10 @@ public class FrequencyTable {
 
 	public void addBigram(String first, String second) {
 
-		if (!this.check(first))
+		if (!this.checkWord(first))
 			return;
 
-		if (!this.check(second))
+		if (!this.checkWord(second))
 			return;
 
 		String elem = first + "_" + second;
@@ -116,13 +117,13 @@ public class FrequencyTable {
 
 	public void addTrigram(String first, String second, String thid) {
 
-		if (!this.check(first))
+		if (!this.checkWord(first))
 			return;
 
-		if (!this.check(second))
+		if (!this.checkWord(second))
 			return;
 
-		if (!this.check(thid))
+		if (!this.checkWord(thid))
 			return;
 
 		String elem = first + "_" + second + "_" + thid;
@@ -207,17 +208,15 @@ public class FrequencyTable {
 
 	}
 
-	public boolean deleteElem(String s) {
+	public void deleteElem(String s) throws ElementNotFoundExceptionException {
 
 		if (this.table.containsKey(s)) {
 
 			this.table.remove(s);
 
-			return true;
-
 		} else
 
-			return false;
+			throw new ElementNotFoundExceptionException("Element "+s+" not found");
 	}
 
 	public int getFreqAbsolute() {
@@ -226,7 +225,7 @@ public class FrequencyTable {
 
 	}
 
-	private boolean check(String s) {
+	private boolean checkWord(String s) {
 
 		if (s.equalsIgnoreCase(""))
 			return false;
