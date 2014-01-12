@@ -3,7 +3,7 @@ package model;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Vector;
-import exceptions.ElementNotFoundExceptionException;
+import exceptions.ElementNotFoundException;
 
 /*
  * Class : FrequencyTable
@@ -92,15 +92,15 @@ public class FrequencyTable {
 		}
 	}
 
-	public void addBigram(String first, String second) {
+	public void addBigram(String firtWord, String secondWord) {
 
-		if (!this.checkWord(first))
+		if (!this.checkWord(firtWord))
 			return;
 
-		if (!this.checkWord(second))
+		if (!this.checkWord(secondWord))
 			return;
 
-		String elem = first + "_" + second;
+		String elem = firtWord + "_" + secondWord;
 
 		if (this.table.containsKey(elem)) {
 
@@ -115,18 +115,18 @@ public class FrequencyTable {
 		this.total += 1;
 	}
 
-	public void addTrigram(String first, String second, String thid) {
+	public void addTrigram(String firtWord, String secondWord, String thirdWord) {
 
-		if (!this.checkWord(first))
+		if (!this.checkWord(firtWord))
 			return;
 
-		if (!this.checkWord(second))
+		if (!this.checkWord(secondWord))
 			return;
 
-		if (!this.checkWord(thid))
+		if (!this.checkWord(thirdWord))
 			return;
 
-		String elem = first + "_" + second + "_" + thid;
+		String elem = firtWord + "_" + secondWord + "_" + thirdWord;
 
 		if (this.table.containsKey(elem)) {
 
@@ -208,7 +208,7 @@ public class FrequencyTable {
 
 	}
 
-	public void deleteElem(String s) throws ElementNotFoundExceptionException {
+	public void deleteElem(String s) throws ElementNotFoundException {
 
 		if (this.table.containsKey(s)) {
 
@@ -216,7 +216,7 @@ public class FrequencyTable {
 
 		} else
 
-			throw new ElementNotFoundExceptionException("Element "+s+" not found");
+			throw new ElementNotFoundException("Element "+s+" not found");
 	}
 
 	public int getFreqAbsolute() {
