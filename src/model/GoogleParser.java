@@ -34,7 +34,7 @@ public class GoogleParser {
 
 	}
 
-	public ArrayList<String> busquedaGoogle(String busqueda, int paginas)
+	public ArrayList<String> googleSearch(String busqueda, int paginas)
 			throws IOException {
 
 		String[] args = busqueda.split(" ");

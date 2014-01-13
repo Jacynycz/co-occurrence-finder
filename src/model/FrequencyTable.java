@@ -3,6 +3,7 @@ package model;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Vector;
+
 import exceptions.ElementNotFoundException;
 
 /*
@@ -156,6 +157,13 @@ public class FrequencyTable {
 
 		return this.table.toString();
 
+	}
+	
+	public boolean contains(String search){
+		
+		if (this.table.containsKey(search))return true;
+		
+		else return false;
 	}
 
 	private void quicksort(int elemFrequencies[], String s[], int low,
